@@ -15,9 +15,9 @@ class Modal extends \yii\bootstrap\Modal
 {
 
     /**
-     * @var string|null
+     * @var string the header content in the modal window.
      */
-    public $linkSelector;
+    var $header = '<h4 class="modal-title">Modal title</h4>';
 
     /**
      * @var array|false the options for rendering the cancel button.
@@ -43,6 +43,7 @@ class Modal extends \yii\bootstrap\Modal
 
     /**
      * Renders the close button.
+     * This will use the latest markup from http://getbootstrap.com/javascript/#modals
      * @return string the rendering result
      */
     protected function renderCloseButton()
@@ -65,7 +66,8 @@ class Modal extends \yii\bootstrap\Modal
     }
 
     /**
-     * Renders the HTML markup for the footer of the modal
+     * Renders the HTML markup for the footer of the modal.
+     * This will also render buttons.
      * @return string the rendering result
      */
     public function renderFooter()
