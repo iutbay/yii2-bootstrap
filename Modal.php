@@ -38,7 +38,7 @@ class Modal extends \yii\bootstrap\Modal
      */
     public $submitButton = [
         'label' => 'OK',
-        'type' => 'Submit',
+        'type' => 'submit',
     ];
 
     /**
@@ -76,7 +76,11 @@ class Modal extends \yii\bootstrap\Modal
                 $footer.= Button::widget($this->cancelButton);
             if ($this->submitButton)
                 $footer.= Button::widget($this->submitButton);
+
+            Html::addCssClass($this->footerOptions, 'modal-footer');
+            $footer = Html::tag('div', "\n" .$footer . "\n", $this->footerOptions);
         }
+        return $footer;
     }
 
     /**

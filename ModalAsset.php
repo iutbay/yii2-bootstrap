@@ -9,7 +9,7 @@ namespace iutbay\yii2bootstrap;
 class ModalAsset extends \yii\web\AssetBundle
 {
 
-    public $sourcePath = '@vendor/iutbay/yii2bootstrap/assets';
+    public $sourcePath = '@vendor/iutbay/yii2-bootstrap/assets';
     public $js = [
         'modal.js',
     ];
