@@ -12,7 +12,8 @@
     ],
     "require": {
         "yiisoft/yii2": "*",
-        "yiisoft/yii2-bootstrap": "*"
+        "yiisoft/yii2-bootstrap": "*",
+        "iutbay/yii2-fontawesome" : "dev-master"
     },
     "autoload": {
         "psr-4": {"iutbay\\yii2bootstrap\\": ""}
