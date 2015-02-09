@@ -1,0 +1,20 @@
+{
+    "name": "iutbay/yii2-bootstrap",
+    "description": "Custom Bootstrap widgets for Yii2",
+    "keywords": ["yii2", "extension", "bootstrap"],
+    "homepage": "https://github.com/iutbay/yii2-bootstrap",
+    "type": "yii2-extension",
+    "authors": [
+        {
+            "name": "Kevin LEVRON",
+            "email": "kevin.levron@gmail.com"
+        }
+    ],
+    "require": {
+        "yiisoft/yii2": "*",
+        "yiisoft/yii2-bootstrap": "*"
+    },
+    "autoload": {
+        "psr-4": {"iutbay\\yii2bootstrap\\": ""}
+    }
+}
