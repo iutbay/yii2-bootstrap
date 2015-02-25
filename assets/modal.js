@@ -47,6 +47,10 @@
      * Default options
      */
     myModal.DEFAULTS = {
+        backdrop: true,
+        keyboard: true,
+        show: true,
+        remote: false,
         afterSubmit : function() {}
     };
 
