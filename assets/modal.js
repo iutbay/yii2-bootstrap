@@ -15,6 +15,7 @@
         this.$content = $element.find('.modal-content');
         this.$body = $element.find('.modal-body');
 
+        // init modal
         $element.modal({
             backdrop: options.backdrop,
             keyboard: options.keyboard,
@@ -22,6 +23,17 @@
             remote: options.remote
         });
 
+        // submit handler
+        $element.on('click', '.modal-footer button[type=submit]', function() {
+           var $form = modal.$content.find('form');
+           if ($form.length) {
+               modal.submit($form);
+           } else {
+               modal.$element.modal('hide');
+           }
+        });
+
+        // click handler
         if (this.options.linkSelector) {
             $('body').on('click', this.options.linkSelector, function(e) {
                 e.preventDefault();
@@ -35,6 +47,7 @@
      * Default options
      */
     myModal.DEFAULTS = {
+        afterSubmit : function() {}
     };
 
     /**
@@ -58,15 +71,54 @@
                 modal.$content.addClass('loading');
             }
         }).done(function(data) {
-            modal.$title.text(data.title);
-            if (modal.options.targetSelector) {
-                var $data = $('<div></div>').html(data.data),
-                    $target = $data.find(modal.options.targetSelector);
-                modal.$body.html($target);
-            } else {
-                modal.$body.html(data.data);
-            }
+            modal.loadData(data);
             modal.$content.removeClass('loading');
+        });
+    };
+    
+    /**
+     * Load data
+     * @param {object} data
+     */
+    myModal.prototype.loadData = function(data) {
+        var modal = this;
+        modal.$title.text(data.title);
+        if (modal.options.targetSelector) {
+            var $data = $('<div></div>').html(data.data),
+                $target = $data.find(modal.options.targetSelector);
+            modal.$body.html($target);
+        } else {
+            modal.$body.html(data.data);
+        }
+    };
+
+    /**
+     * Submit form
+     */
+    myModal.prototype.submit = function($form) {
+        var modal = this;
+        $.ajax({
+            url: $form.attr('action'),
+            type: 'post',
+            data: $form.serialize(),
+            cache: false,
+            beforeSend: function() {
+                modal.$content.addClass('loading');
+            }
+        }).done(function(data) {
+            if (data.data) {
+                modal.loadData(data);
+                modal.$content.removeClass('loading');
+            } else if (data.success) {
+                modal.options.afterSubmit();
+                modal.$content.removeClass('loading');
+                modal.$element.modal('hide');
+                new PNotify({
+                    type: 'success',
+                    text: data.success,
+                    delay: 5000
+                });
+            }
         });
     };
 
