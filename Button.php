@@ -86,7 +86,7 @@ class Button extends \yii\bootstrap\Button
 			$this->label = FA::icon($this->icon) . ' ' . $this->label;
 			$this->encodeLabel = false;
 		}
-		parent::run();
+		return parent::run();
 	}
 
 }
