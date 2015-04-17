@@ -17,6 +17,12 @@ class ButtonGroup extends \yii\bootstrap\ButtonGroup
     public $size = '';
 
     /**
+     * Buttons type
+     * @var string
+     */
+    public $type = '';
+
+    /**
      * @inheritdoc
      */
     public function init()
@@ -36,6 +42,7 @@ class ButtonGroup extends \yii\bootstrap\ButtonGroup
         $buttons = [];
         foreach ($this->buttons as $button) {
             if (is_array($button)) {
+                if (!empty($this->type) && !isset($button['type'])) $button['type'] = $this->type;
                 $buttons[] = Button::widget($button);
             } else {
                 $buttons[] = $button;
