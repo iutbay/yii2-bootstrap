@@ -77,6 +77,11 @@
         }).done(function(data) {
             modal.loadData(data);
             modal.$content.removeClass('loading');
+            var $form = modal.$content.find('form');
+            $form.on('submit', function() {
+                modal.submit($form);
+                return false;
+            });
         });
     };
     
