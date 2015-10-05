@@ -131,7 +131,8 @@
                 new PNotify({
                     type: 'success',
                     text: data.success,
-                    delay: 5000
+                    delay: 5000,
+                    styling: 'bootstrap3'
                 });
             }
         });
