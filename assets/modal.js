@@ -77,6 +77,7 @@
         }).done(function(data) {
             modal.loadData(data);
             modal.$content.removeClass('loading');
+            // TODO : proper
             var $form = modal.$content.find('form');
             $form.on('submit', function() {
                 modal.submit($form);
@@ -118,6 +119,11 @@
             if (data.data) {
                 modal.loadData(data);
                 modal.$content.removeClass('loading');
+                var $form = modal.$content.find('form');
+                $form.on('submit', function() {
+                    modal.submit($form);
+                    return false;
+                });
             } else if (data.success) {
                 modal.options.afterSubmit();
                 modal.$content.removeClass('loading');
