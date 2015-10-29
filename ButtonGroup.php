@@ -2,10 +2,9 @@
 
 namespace iutbay\yii2bootstrap;
 
-use yii\helpers\Html;
-use yii\helpers\Url;
+use yii\helpers\ArrayHelper;
 
-use iutbay\yii2fontawesome\FontAwesome;
+use yii\helpers\Html;
 
 class ButtonGroup extends \yii\bootstrap\ButtonGroup
 {
@@ -42,7 +41,18 @@ class ButtonGroup extends \yii\bootstrap\ButtonGroup
         $buttons = [];
         foreach ($this->buttons as $button) {
             if (is_array($button)) {
+                $visible = ArrayHelper::remove($button, 'visible', true);
+                if ($visible === false) {
+                    continue;
+                }
+
+                $button['view'] = $this->getView();
+                if (!isset($button['encodeLabel'])) {
+                    $button['encodeLabel'] = $this->encodeLabels;
+                }
+
                 if (!empty($this->type) && !isset($button['type'])) $button['type'] = $this->type;
+
                 $buttons[] = Button::widget($button);
             } else {
                 $buttons[] = $button;
