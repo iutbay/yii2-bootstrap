@@ -3,7 +3,6 @@
 namespace iutbay\yii2bootstrap;
 
 use yii\helpers\ArrayHelper;
-
 use yii\helpers\Html;
 
 class ButtonGroup extends \yii\bootstrap\ButtonGroup
