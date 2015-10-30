@@ -27,15 +27,9 @@
         $element.on('click', '.modal-footer button[type=submit]', function() {
            var $form = modal.$content.find('form');
            if ($form.length) {
-                var yiiActiveForm = $form.data('yiiActiveForm');
-                if (yiiActiveForm) {
-                    $form.data('yiiActiveForm').submitting = true;
-                    $form.yiiActiveForm('validate');
-                } else {
-                    modal.submit($form);
-                }
+                modal.submit($form);
            } else {
-               modal.$element.modal('hide');
+                modal.$element.modal('hide');
            }
         });
 
@@ -112,6 +106,15 @@
      * Submit form
      */
     myModal.prototype.submit = function($form) {
+        var yiiActiveFormData = $form.data('yiiActiveForm');
+        if (yiiActiveFormData && !yiiActiveFormData.validated) {
+            if (!yiiActiveFormData.submitting) {
+                yiiActiveFormData.submitting = true;
+                $form.yiiActiveForm('validate');
+            }
+            return;
+        }
+
         var modal = this;
         $.ajax({
             url: $form.attr('action'),
