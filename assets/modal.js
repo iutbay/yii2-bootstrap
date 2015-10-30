@@ -27,7 +27,13 @@
         $element.on('click', '.modal-footer button[type=submit]', function() {
            var $form = modal.$content.find('form');
            if ($form.length) {
-               modal.submit($form);
+                var yiiActiveForm = $form.data('yiiActiveForm');
+                if (yiiActiveForm) {
+                    $form.data('yiiActiveForm').submitting = true;
+                    $form.yiiActiveForm('validate');
+                } else {
+                    modal.submit($form);
+                }
            } else {
                modal.$element.modal('hide');
            }
