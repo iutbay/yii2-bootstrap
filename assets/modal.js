@@ -74,6 +74,15 @@
                 modal.reset();
                 modal.$content.addClass('loading');
             }
+        }).fail(function(jqXHR) {
+            modal.$content.removeClass('loading');
+            modal.$element.modal('hide');
+            new PNotify({
+                type: 'error',
+                text: jqXHR.responseText,
+                delay: 5000,
+                styling: 'bootstrap3'
+            });
         }).done(function(data) {
             modal.loadData(data);
             modal.$content.removeClass('loading');
