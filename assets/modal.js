@@ -88,9 +88,9 @@
             modal.$content.removeClass('loading');
             // TODO : proper
             var $form = modal.$content.find('form');
-            $form.on('submit', function() {
+            $form.on('submit', function(e) {
+                e.preventDefault();
                 modal.submit($form);
-                return false;
             });
         });
     };
@@ -133,14 +133,22 @@
             beforeSend: function() {
                 modal.$content.addClass('loading');
             }
+        }).fail(function(jqXHR) {
+            modal.$content.removeClass('loading');
+            new PNotify({
+                type: 'error',
+                text: jqXHR.responseText,
+                delay: 5000,
+                styling: 'bootstrap3'
+            });            
         }).done(function(data) {
             if (data.data) {
                 modal.loadData(data);
                 modal.$content.removeClass('loading');
                 var $form = modal.$content.find('form');
-                $form.on('submit', function() {
+                $form.on('submit', function(e) {
+                    e.preventDefault();
                     modal.submit($form);
-                    return false;
                 });
             } else if (data.success) {
                 modal.options.afterSubmit();
