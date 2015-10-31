@@ -61,13 +61,25 @@ class Button extends \yii\bootstrap\Button
     public $tooltip = '';
 
     /**
+     * Dropdown items
+     * @var string
+     */
+    public $items;
+
+    /**
+     * Split button dropdowns
+     * @var boolean
+     */
+    public $split = true;
+
+    /**
      * Renders the widget.
      */
     public function run()
     {
         if (!$this->visible)
             return '';
-        
+
         if ($this->url !== null) {
             $this->options['href'] = Url::to($this->url);
             $this->tagName = 'a';
@@ -101,7 +113,49 @@ class Button extends \yii\bootstrap\Button
             $this->encodeLabel = false;
         }
 
+        if (is_array($this->items)) {
+            return $this->renderDropdown();
+        }
+
         return parent::run();
+    }
+
+    /**
+     * Render a dropdown button
+     * @return string
+     */
+    protected function renderDropdown()
+    {
+        // build button(s)
+        $caret = '<span class="caret"></span>';
+        if ($this->split) {
+            $button = parent::run();
+            $button.= self::widget([
+                'label' => $caret,
+                'encodeLabel' => false,
+                'type' => $this->type,
+                'options' => [
+                    'class' => 'dropdown-toggle',
+                    'data-toggle' => 'dropdown',
+                ],
+            ]);
+        } else {
+            $this->label.= " {$caret}";
+            $this->encodeLabel = false;
+            $this->tooltip = '';
+            $this->options['data-toggle'] = 'dropdown';
+            Html::addCssClass($this->options, 'dropdown-toggle');
+            $button = parent::run();
+        }
+
+        // build dropdown
+        $dropdown = Dropdown::widget([
+            'items' => $this->items,
+        ]);
+
+        // return button group
+        $buttonGroup = Html::tag('div', "{$button}\n{$dropdown}", ['class' => 'btn-group']);
+        return $buttonGroup;
     }
 
 }
