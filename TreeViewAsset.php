@@ -12,6 +12,9 @@ class TreeViewAsset extends \yii\web\AssetBundle
     public $js = [
         'treeview.js',
     ];
+    public $css = [
+        'treeview.css',
+    ];
     public $depends = [
         'yii\bootstrap\BootstrapPluginAsset',
         'iutbay\yii2fontawesome\FontAwesomeAsset',
