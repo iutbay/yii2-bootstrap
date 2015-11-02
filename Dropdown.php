@@ -6,6 +6,10 @@ use yii\helpers\ArrayHelper;
 
 use iutbay\yii2fontawesome\FontAwesome as FA;
 
+/**
+ * Dropdown widget
+ * @author Kevin LEVRON <kevin.levron@gmail.com>
+ */
 class Dropdown extends \yii\bootstrap\Dropdown
 {
 
