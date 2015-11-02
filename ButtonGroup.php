@@ -5,6 +5,10 @@ namespace iutbay\yii2bootstrap;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 
+/**
+ * ButtonGroup widget
+ * @author Kevin LEVRON <kevin.levron@gmail.com>
+ */
 class ButtonGroup extends \yii\bootstrap\ButtonGroup
 {
 
