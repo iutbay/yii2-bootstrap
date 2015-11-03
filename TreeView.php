@@ -32,6 +32,11 @@ class TreeView extends \yii\base\Widget
     public $itemChildrenAttribute = 'items';
 
     /**
+     * @var \Closure
+     */
+    public $renderItemLabel;
+
+    /**
      * List selector
      * @var string
      */
@@ -99,7 +104,11 @@ class TreeView extends \yii\base\Widget
      */
     public function renderLI($item, $options = [])
     {
-        $li = $this->getItemLabel($item);
+        if ($this->renderItemLabel instanceof \Closure) {
+            $li = call_user_func($this->renderItemLabel, $item);
+        } else {
+            $li = $this->getItemLabel($item);
+        }
         $li.= $this->renderUL($this->getItemChildren($item));
         return Html::tag('li', $li, $options);
     }
