@@ -22,10 +22,15 @@
     border-left:1px solid;
 }
 .treeview .treeview-icon {
+	margin-right:2px;
+}
+.treeview .open-icon,
+.treeview .close-icon {
 	cursor: pointer;
     transition: color 0.4s;
 }
-.treeview .treeview-icon:hover {
+.treeview .open-icon,
+.treeview .close-icon:hover {
 	color: #337ab7;
 }
 .treeview li {
