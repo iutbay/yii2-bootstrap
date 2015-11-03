@@ -12,12 +12,13 @@
 		this.options = options;
 		this.openIconClass = 'fa-' + this.options.openIcon;
 		this.closeIconClass = 'fa-' + this.options.closeIcon;
-		this.openIconHtml = '<i class="fa fa-fw ' + this.openIconClass + '"></i>';
-		this.closeIconHtml = '<i class="fa fa-fw ' + this.closeIconClass + '"></i>';
+		this.openIconHtml = '<i class="treeview-icon fa fa-fw ' + this.openIconClass + '"></i>';
+		this.closeIconHtml = '<i class="treeview-icon fa fa-fw ' + this.closeIconClass + '"></i>';
 
 		var treeview = this,
 			jtree = this.jtree;
 
+        // init treeview
 		jtree.addClass('treeview');
 		jtree.find('li').has('ul').each(function () {
 			var jbranch = $(this);
@@ -28,17 +29,12 @@
                 jbranch.prepend(treeview.closeIconHtml);
             }
 		});
-		jtree.on('click', 'a', function (e) {
-			e.stopPropagation();
-		});
-		jtree.on('click', 'li:not(.treeview-branch)', function (e) {
-			e.stopPropagation();
-		});
-		jtree.on('click', '.treeview-branch', function (e) {
-			e.stopPropagation();
-			var jthis = $(this), jicon = jthis.find('> i:first');
+
+        // click handler
+		jtree.on('click', '.treeview-icon', function (e) {
+			var jicon = $(this), jli = jicon.parent();
 			jicon.toggleClass(treeview.openIconClass + " " + treeview.closeIconClass);
-			jthis.find('> ul').toggle();
+			jli.find('> ul').toggle();
 		});
 	};
 
@@ -47,8 +43,10 @@
 	 */
 	Treeview.DEFAULTS = {
         init: 'collapsed',
-		openIcon: 'plus-square-o',
-		closeIcon: 'minus-square-o'
+//		openIcon: 'plus-square-o',
+//		closeIcon: 'minus-square-o'
+		openIcon: 'folder-o',
+		closeIcon: 'folder-open-o'
 	};
 
 	/**
