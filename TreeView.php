@@ -29,38 +29,20 @@ class TreeView extends \yii\base\Widget
     public $listSelector;
 
     /**
-     * Open FA icon
-     * @var string
+     * Treeview client options
+     * @var array
      */
-    public $openIcon = 'plus-circle';
-
-    /**
-     * Close FA icon
-     * @var string
-     */
-    public $closeIcon = 'minus-circle';
+    public $clientOptions = [];
 
     /**
      * @inheritdoc
      */
     public function run()
     {
-        $options = Json::encode($this->getClientOptions());
+        $options = Json::encode($this->clientOptions);
         $view = $this->getView();
         TreeViewAsset::register($view);
         $view->registerJs("jQuery('{$this->listSelector}').treeview($options);");
-    }
-
-    /**
-     * Returns the options for treeview js.
-     * @return array
-     */
-    protected function getClientOptions()
-    {
-        return [
-            'openIcon' => $this->openIcon,
-            'closeIcon' => $this->closeIcon,
-        ];
     }
 
 }

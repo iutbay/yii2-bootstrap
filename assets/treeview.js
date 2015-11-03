@@ -21,8 +21,12 @@
 		jtree.addClass('treeview');
 		jtree.find('li').has('ul').each(function () {
 			var jbranch = $(this);
-			jbranch.prepend(treeview.openIconHtml);
-			jbranch.addClass('treeview-branch').find('> ul').toggle();
+            jbranch.addClass('treeview-branch');
+            if (treeview.init === 'collapsed') {
+                jbranch.prepend(treeview.openIconHtml).find('> ul').toggle();
+            } else {
+                jbranch.prepend(treeview.closeIconHtml);
+            }
 		});
 		jtree.on('click', 'a', function (e) {
 			e.stopPropagation();
@@ -42,8 +46,9 @@
 	 * Default options
 	 */
 	Treeview.DEFAULTS = {
-		openIcon: 'plus-circle',
-		closeIcon: 'minus-circle'
+        init: 'collapsed',
+		openIcon: 'plus-square-o',
+		closeIcon: 'minus-square-o'
 	};
 
 	/**
