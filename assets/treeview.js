@@ -24,7 +24,7 @@
 			var jbranch = $(this);
             jbranch.addClass('treeview-branch');
             if (treeview.init === 'collapsed') {
-                jbranch.prepend(treeview.openIconHtml).find('> ul').toggle();
+                jbranch.prepend(treeview.openIconHtml).find('> ul').slideToggle('fast');
             } else {
                 jbranch.prepend(treeview.closeIconHtml);
             }
@@ -34,7 +34,7 @@
 		jtree.on('click', '.treeview-icon', function (e) {
 			var jicon = $(this), jli = jicon.parent();
 			jicon.toggleClass(treeview.openIconClass + " " + treeview.closeIconClass);
-			jli.find('> ul').toggle();
+			jli.find('> ul').slideToggle('fast');
 		});
 	};
 
