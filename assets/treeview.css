@@ -23,6 +23,10 @@
 }
 .treeview .treeview-icon {
 	cursor: pointer;
+    transition: color 0.4s;
+}
+.treeview .treeview-icon:hover {
+	color: #337ab7;
 }
 .treeview li {
     margin:0;
