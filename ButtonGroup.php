@@ -16,13 +16,13 @@ class ButtonGroup extends \yii\bootstrap\ButtonGroup
      * Button group size
      * @var string
      */
-    public $size = '';
+    public $size;
 
     /**
      * Buttons type
      * @var string
      */
-    public $type = '';
+    public $type;
 
     /**
      * @inheritdoc
