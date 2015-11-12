@@ -101,13 +101,25 @@
      */
     myModal.prototype.loadData = function(data) {
         var modal = this;
-        modal.$title.text(data.title);
-        if (modal.options.targetSelector) {
-            var $data = $('<div></div>').html(data.data),
-                $target = $data.find(modal.options.targetSelector);
-            modal.$body.html($target);
-        } else {
-            modal.$body.html(data.data);
+        // TODO :proper
+        if ($.type(data)==='object') {
+            modal.$title.text(data.title);
+            if (modal.options.targetSelector) {
+                var $data = $('<div></div>').html(data.data),
+                    $target = $data.find(modal.options.targetSelector);
+                modal.$body.html($target);
+            } else {
+                modal.$body.html(data.data);
+            }
+        } else if ($.type(data)==='string') {
+            var $data = $('<div></div>').html(data);
+            modal.$title.html($data.find('h1').first().html());
+            if (modal.options.targetSelector) {
+                modal.$body.html($data.find(modal.options.targetSelector));
+            } else {
+                modal.$body.html($data);
+            }
+            
         }
     };
 
