@@ -93,6 +93,9 @@ class Button extends \yii\bootstrap\Button
             if ($this->type == 'submit') {
                 $this->options['type'] = $this->type;
                 Html::addCssClass($this->options, 'btn-primary');
+            } else if ($this->type == 'button') {
+                $this->options['type'] = $this->type;
+                Html::addCssClass($this->options, 'btn-default');
             } else {
                 Html::addCssClass($this->options, 'btn-' . $this->type);
             }
