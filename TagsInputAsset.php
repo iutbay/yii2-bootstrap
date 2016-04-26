@@ -10,6 +10,7 @@ class TagsInputAsset extends \yii\web\AssetBundle
 {
     public $sourcePath = '@vendor/iutbay/yii2-bootstrap/assets';
     public $js = [
+        'tagsinput.js',
     ];
     public $css = [
     ];
