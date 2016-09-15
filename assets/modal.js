@@ -14,6 +14,7 @@
         this.$title = $element.find('.modal-title');
         this.$content = $element.find('.modal-content');
         this.$body = $element.find('.modal-body');
+        this.origin = null;
 
         // init modal
         $element.modal({
@@ -37,6 +38,7 @@
         if (this.options.linkSelector) {
             $('body').on('click', this.options.linkSelector, function(e) {
                 e.preventDefault();
+                modal.origin = this;
                 modal.$element.modal('show');
                 modal.loadUrl(this.href);
             });
@@ -119,7 +121,6 @@
             } else {
                 modal.$body.html($data);
             }
-            
         }
     };
 
@@ -163,7 +164,7 @@
                     modal.submit($form);
                 });
             } else if (data.success) {
-                modal.options.afterSubmit();
+                modal.options.afterSubmit(modal);
                 modal.$content.removeClass('loading');
                 modal.$element.modal('hide');
                 new PNotify({
