@@ -14,6 +14,8 @@ use iutbay\yii2fontawesome\FontAwesome as FA;
 class Dropdown extends \yii\bootstrap\Dropdown
 {
 
+    public $submenuOptions = ['class' => 'dropdown-menu'];
+
     /**
      * @inheritdoc
      */
