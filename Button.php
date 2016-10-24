@@ -87,6 +87,8 @@ class Button extends \yii\bootstrap\Button
 
         if ($this->disabled) {
             $this->options['disabled'] = 'disabled';
+            $this->tagName = 'button';
+            unset($this->options['href'], $this->options['target']);
         }
 
         if (!empty($this->type)) {
