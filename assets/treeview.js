@@ -26,7 +26,7 @@
 			var jthis = $(this);
 			if (jthis.find('> ul').length) {
 				jthis.addClass('treeview-branch');
-				if (treeview.init === 'collapsed') {
+				if (treeview.options.init === 'collapsed') {
 					jthis.prepend(treeview.openIconHtml).find('> ul').slideToggle('fast');
 				} else {
 					jthis.prepend(treeview.closeIconHtml);
