@@ -20,7 +20,6 @@
         var treeview = this,
             jtree = this.jtree;
 
-        console.log(this.options);
         // init treeview
         jtree.addClass('treeview');
         jtree.find('li').each(function () {
