@@ -18,8 +18,9 @@
         this.normalIconHtml = '<i class="treeview-icon fa fa-fw ' + this.normalIconClass + '"></i>';
 
         var treeview = this,
-                jtree = this.jtree;
+            jtree = this.jtree;
 
+        console.log(this.options);
         // init treeview
         jtree.addClass('treeview');
         jtree.find('li').each(function () {
@@ -57,11 +58,11 @@
     /**
      * JQuery plugin
      */
-    $.fn.treeview = function (options) {
+    $.fn.treeview = function (params) {
         return this.each(function () {
             var jthis = $(this);
             var data = jthis.data('treeview');
-            var options = $.extend({}, Treeview.DEFAULTS, jthis.data(), typeof options == 'object' && options);
+            var options = $.extend({}, Treeview.DEFAULTS, jthis.data(), typeof params == 'object' && params);
 
             if (!data)
                 jthis.data('treeview', (data = new Treeview(jthis, options)));
