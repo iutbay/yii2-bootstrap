@@ -40,7 +40,7 @@
         // click handler
         jtree.on('click', '.open-icon, .close-icon', function (e) {
             var jicon = $(this), jli = jicon.parent();
-            jicon.toggleClass(treeview.openIconClass + " " + treeview.closeIconClass);
+            jicon.toggleClass(treeview.openIconClass + ' ' + treeview.closeIconClass + ' open-icon close-icon');
             jli.find('> ul').slideToggle('fast');
         });
     };
