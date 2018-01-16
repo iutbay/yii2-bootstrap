@@ -79,7 +79,7 @@
         }).fail(function(jqXHR) {
             modal.$content.removeClass('loading');
             modal.$element.modal('hide');
-            new PNotify({
+            if (jqXHR.responseText) new PNotify({
                 type: 'error',
                 text: jqXHR.responseText,
                 delay: 5000,
@@ -148,7 +148,7 @@
             }
         }).fail(function(jqXHR) {
             modal.$content.removeClass('loading');
-            new PNotify({
+            if (jqXHR.responseText) new PNotify({
                 type: 'error',
                 text: jqXHR.responseText,
                 delay: 5000,
