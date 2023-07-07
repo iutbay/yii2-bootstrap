@@ -137,11 +137,14 @@
             return;
         }
 
+        var formData = new FormData($form[0]);
         var modal = this;
         $.ajax({
             url: $form.attr('action'),
             type: 'post',
-            data: $form.serialize(),
+            data: formData,
+            processData: false,
+            contentType: false,
             cache: false,
             beforeSend: function() {
                 modal.$content.addClass('loading');
